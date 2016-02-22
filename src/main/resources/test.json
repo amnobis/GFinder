@@ -1,0 +1,45 @@
+{
+  "query" : {
+    "filtered" : {
+      "filter" : {
+        "bool" : {
+          "must" : [
+            {
+              "term" : {
+                "attributes.league": "Talisman"
+              }
+            },
+            {
+              "range": {
+                "modsPseudo.+# Total to maximum Life": {
+                  "gte": 80
+                }
+              }
+            },
+            {
+              "range": {
+                "modsPseudo.+#% Total to Elemental Resistances": {
+                  "gte": 125
+                }
+              }
+            }
+          ],
+          "should": [
+            {
+              "term" : {
+                "attributes.equipType": "Ring"
+              }
+            },
+            {
+              "range": {
+                "modsPseudo.eleResistSumLightning": {
+                  "gte": 40
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
