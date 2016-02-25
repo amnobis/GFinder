@@ -12,4 +12,9 @@ public class Body extends Armour {
     public Body(int level, int numSockets, int numLinks, BaseType type) {
         super(level, numSockets, numLinks, type);
     }
+
+    @Override
+    public String toString() {
+        return "Body";
+    }
 }

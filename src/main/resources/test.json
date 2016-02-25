@@ -6,7 +6,7 @@
           "must" : [
             {
               "term" : {
-                "attributes.league": "Talisman"
+                "attributes.league": "Standard"
               }
             },
             {
@@ -19,7 +19,7 @@
             {
               "range": {
                 "modsPseudo.+#% Total to Elemental Resistances": {
-                  "gte": 125
+                  "gte": 110
                 }
               }
             }
