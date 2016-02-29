@@ -3,7 +3,7 @@ version '0.0.0'
 apply plugin: 'idea'
 apply plugin: 'application'
 apply plugin: 'java'
-mainClassName = 'client.impl.Client'
+mainClassName = 'client.impl.ClientApplication'
 
 sourceCompatibility = 1.8
 
@@ -25,9 +25,14 @@ dependencies {
     compile 'io.searchbox:jest:2.0.0'
     compile 'org.slf4j:slf4j-api:1.7.5'
     compile 'org.slf4j:slf4j-log4j12:1.7.5'
+    compile 'com.google.dagger:dagger:2.0.2'
 }
 
 jar {
     baseName = 'gf-gradle'
     version = '0.1.0'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.8'
 }

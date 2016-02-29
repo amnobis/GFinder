@@ -6,7 +6,7 @@
           "must" : [
             {
               "term" : {
-                "attributes.league": "Standard"
+                "attributes.league": "Talisman"
               }
             },
             {
@@ -18,23 +18,28 @@
             },
             {
               "range": {
-                "modsPseudo.+#% Total to Elemental Resistances": {
-                  "gte": 110
+                "mods.Ring.explicit.#% increased Rarity of Items found": {
+                  "gte": 10
                 }
-              }
-            }
-          ],
-          "should": [
-            {
-              "term" : {
-                "attributes.equipType": "Ring"
               }
             },
             {
               "range": {
-                "modsPseudo.eleResistSumLightning": {
-                  "gte": 40
+                "mods.Ring.explicit.+#% to Fire Resistance": {
+                  "gte" : 40
                 }
+              }
+            },
+            {
+              "range": {
+                "mods.Ring.explicit.+#% to Cold Resistance": {
+                  "gte": 10
+                }
+              }
+            },
+            {
+              "term" : {
+                "attributes.equipType": "Ring"
               }
             }
           ]

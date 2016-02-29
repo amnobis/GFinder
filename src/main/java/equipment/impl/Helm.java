@@ -10,4 +10,5 @@ public class Helm extends Armour {
     public Helm(int level, int numSockets, int numLinks, BaseType type) {
         super(level, numSockets, numLinks, type);
     }
+
 }

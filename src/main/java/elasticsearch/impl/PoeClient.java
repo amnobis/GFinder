@@ -33,7 +33,7 @@ public class PoeClient {
 
         JestClient client = factory.getObject();
 
-        String query = readFile("/home/anobis/workspace/GearFinder/src/main/resources/test.json", Charset.defaultCharset());
+        String query = readFile("src/main/resources/test.json", Charset.defaultCharset());
         Map<String, Object> headers = new HashMap<>();
 
         headers.put("Authorization", "DEVELOPMENT-Indexer");
