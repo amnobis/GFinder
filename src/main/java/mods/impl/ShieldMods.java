@@ -1,15 +1,19 @@
 package mods.impl;
 
+import javax.inject.Singleton;
+
 /**
- * Created by anobis on 2/28/16.
+ * 2/28/16
+ * @author {anobis}
  */
+@Singleton
 public class ShieldMods extends Mods{
     @Override
     public void notifyParsed(String line) {
         if (line.contains("mods.Shield.implicit")) {
-            super.addExplicit(line, line);
+            addImplicitMod(line, line);
         } else if (line.contains("mods.Shield.explicit")) {
-            super.addImplicitMod(line, line);
+            addExplicitMod(line, line);
         }
     }
 }

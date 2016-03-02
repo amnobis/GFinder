@@ -1,15 +1,18 @@
 package mods.impl;
 
+import javax.inject.Singleton;
+
 /**
- * Created by anobis on 2/28/16.
+ * @author anobis
  */
-public class GloveMods extends Mods{
+@Singleton
+public class GloveMods extends Mods {
     @Override
     public void notifyParsed(String line) {
         if (line.contains("mods.Gloves.implicit")) {
-            super.addExplicit(line, line);
+            addImplicitMod(line, line);
         } else if (line.contains("mods.Gloves.explicit")) {
-            super.addImplicitMod(line, line);
+            addExplicitMod(line, line);
         }
     }
 }

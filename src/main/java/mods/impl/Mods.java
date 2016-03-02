@@ -24,7 +24,7 @@ public abstract class Mods implements IMods, IMappingParserListener {
         return this;
     }
 
-    public Mods addExplicit(String key, String mod) {
+    public Mods addExplicitMod(String key, String mod) {
         explicitMods.put(key, mod);
         return this;
     }

@@ -1,6 +1,5 @@
 package elasticsearch.impl;
 
-import dagger.Module;
 import elasticsearch.api.IMappingParser;
 import elasticsearch.api.IMappingParserListener;
 import org.apache.log4j.Logger;
@@ -9,19 +8,23 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
 /**
  * @author anobis
  */
-@Module
+@Singleton
 public class MappingParser implements IMappingParser {
     private static final Logger LOG = Logger.getLogger(MappingParser.class);
     // Eventually the mapping will be a Key/Value pair in an ini file
     private static final String mappingUrl = "http://exiletools.com/info/mapping?field=*";
-    private Set<IMappingParserListener> listeners = new HashSet<>();
+    private final Set<IMappingParserListener> listeners;
+
+    @Inject
+    public MappingParser(Set<IMappingParserListener> listeners) {
+        this.listeners = listeners;
+    }
 
     @Override
     public synchronized void start() {
@@ -44,8 +47,10 @@ public class MappingParser implements IMappingParser {
         }
     }
 
-    @Inject
-    synchronized public void addListener(Set<IMappingParserListener> listeners) {
-        this.listeners = listeners;
+    @Override
+    public String toString() {
+        return "MappingParser{" +
+                "listeners=" + listeners +
+                '}';
     }
 }

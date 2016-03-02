@@ -18,7 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by anobis on 2/20/16.
+ * 2/20/16
+ * @author {anobis}
  */
 public class PoeClient {
     private static final Logger LOG = Logger.getLogger(PoeClient.class);

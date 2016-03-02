@@ -1,0 +1,98 @@
+{
+  "_index": "poe20160130",
+  "_type": "item",
+  "_id": "1301924:69211c803db1c0bbc9dac3b5e8e23e4a",
+  "_score": 1.0,
+  "_source": {
+    "modsPseudo": {
+      "+#% Total to Resistances": 111,
+      "+#% Total to Elemental Resistances": 111,
+      "+#% Total to Cold Resistance": 16,
+      "+# Total to Strength": 31,
+      "+# Total to Attributes": 31,
+      "# of Resistances": 3,
+      "+# Total to maximum Life": 90,
+      "+#% Total to Lightning Resistance": 52,
+      "+#% Total to Fire Resistance": 43,
+      "# of Elemental Resistances": 3
+    },
+    "info": {
+      "fullName": "Damnation Turn Ruby Ring",
+      "icon": "http://webcdn.pathofexile.com/image/Art/2DItems/Rings/Ring7.png",
+      "typeLine": "Ruby Ring",
+      "name": "Damnation Turn",
+      "tokenized": {
+        "fullName": "damnation turn ruby ring"
+      }
+    },
+    "requirements": {
+      "Level": 48
+    },
+    "modsTotal": {
+      "+#% to Fire Resistance": 27,
+      "Adds #-# Lightning Damage to Attacks": {
+        "min": 3,
+        "max": 38
+      },
+      "+#% to Lightning Resistance": 36,
+      "+# to Strength": 31,
+      "+#% to all Elemental Resistances": 16,
+      "+# to maximum Life": 75
+    },
+    "md5sum": "69211c803db1c0bbc9dac3b5e8e23e4a",
+    "uuid": "1301924:69211c803db1c0bbc9dac3b5e8e23e4a",
+    "shop": {
+      "lastUpdateDB": "2016-02-07 04:53:27",
+      "sellerIGN": "ex_ripper",
+      "added": 1454838805000,
+      "priceChanges": 0,
+      "chaosEquiv": 30,
+      "modified": 1454929075000,
+      "saleType": "b/o",
+      "currency": "Chaos Orb",
+      "threadTitle": "trashshop",
+      "amount": 30,
+      "sellerAccount": "Granturist",
+      "threadid": "1301924",
+      "updated": 1454929075000,
+      "verified": "GONE"
+    },
+    "mods": {
+      "Ring": {
+        "explicit": {
+          "+#% to Lightning Resistance": 36,
+          "+# to Strength": 31,
+          "+#% to all Elemental Resistances": 16,
+          "+# to maximum Life": 75
+        },
+        "implicit": {
+          "+#% to Fire Resistance": 27
+        },
+        "crafted": {
+          "Adds #-# Lightning Damage to Attacks": {
+            "min": 3,
+            "max": 38
+          }
+        }
+      }
+    },
+    "attributes": {
+      "equipType": "Ring",
+      "support": true,
+      "corrupted": false,
+      "explicitModsCount": 4,
+      "craftedModsCount": 1,
+      "lockedToCharacter": false,
+      "identified": true,
+      "baseItemType": "Jewelry",
+      "inventoryHeight": 1,
+      "mirrored": false,
+      "rarity": "Rare",
+      "implicitModsCount": 1,
+      "frameType": 2,
+      "league": "Standard",
+      "itemType": "Ring",
+      "inventoryWidth": 1
+    }
+  }
+}

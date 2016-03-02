@@ -1,5 +1,6 @@
 package client.impl;
 
+import com.gluonhq.ignite.guice.GuiceContext;
 import elasticsearch.api.IMappingParser;
 import elasticsearch.impl.PoeClient;
 import javafx.application.Application;
@@ -17,32 +18,26 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author anobis
  */
 
 public class Client extends Application {
-    private IMods mods;
-    private IMappingParser mappingParser;
+    @Inject IMods mods;
+    @Inject IMappingParser mappingParser;
+    private GuiceContext context = new GuiceContext(this, () -> Arrays.asList(new GuiceModule()));
 
-    @Inject
-    public void setMods(IMods mods) {
-        this.mods = mods;
-    }
 
-    @Inject
-    public void setMappingParser(IMappingParser mappingParser) {
-        this.mappingParser = mappingParser;
-    }
-
-    public void startUp(String[] args) {
+    public void init(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
         Scene scene = new Scene(new Group(), 500, 250);
+        context.init();
 
         final ComboBox<String> difficulty = new ComboBox<>();
         final ComboBox<String> league = new ComboBox<>();
@@ -56,6 +51,7 @@ public class Client extends Application {
 
         PoeClient poeClient = new PoeClient();
         mappingParser.start();
+        System.out.println(mods.getExplicit());
 
         List<String> equipmentList = new ArrayList<>(Arrays.asList("Body", "Boot", "Glove", "Helm", "Shield",
                 "Ring", "Ring", "Amulet", "Belt"));
@@ -82,7 +78,7 @@ public class Client extends Application {
 
         equipment.setOnAction(event -> {
             try {
-                for (String key : mods.getImplicit().keySet()) {
+                for (String key : mods.getExplicit().keySet()) {
                     System.out.println(key);
                     implicit.add(key);
                 }
@@ -149,5 +145,13 @@ public class Client extends Application {
         {
             return text.matches("^-?[0-9]*");
         }
+    }
+
+    public void setMods(IMods mods) {
+        this.mods = mods;
+    }
+
+    public void setMappingParser(IMappingParser mappingParser) {
+        this.mappingParser = mappingParser;
     }
 }

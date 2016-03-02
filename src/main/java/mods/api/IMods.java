@@ -3,7 +3,7 @@ package mods.api;
 import java.util.Map;
 
 /**
- * Created by anobis on 2/28/16.
+ * @author anobis
  */
 public interface IMods {
     Map<String, String> getImplicit();
