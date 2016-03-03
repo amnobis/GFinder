@@ -1,15 +1,11 @@
 package equipment.impl;
 
-import elasticsearch.api.IMappingParserListener;
 import equipment.api.IArmour;
 import org.apache.log4j.Logger;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Created by anobis on 2/21/16.
+ * 2/21/16
+ * @author {anobis}
  */
 public class Armour implements IArmour {
     private static final Logger LOG = Logger.getLogger(Armour.class);

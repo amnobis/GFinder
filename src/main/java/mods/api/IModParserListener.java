@@ -1,9 +1,9 @@
-package elasticsearch.api;
+package mods.api;
 
 /**
  * @author anobis
  */
-public interface IMappingParserListener {
+public interface IModParserListener {
 
     /**
      *

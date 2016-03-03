@@ -1,6 +1,6 @@
 package client.impl;
 
-import elasticsearch.api.IMappingParser;
+import mods.api.IModParser;
 import mods.api.IMods;
 
 /**
@@ -8,15 +8,15 @@ import mods.api.IMods;
  * @author {anobis}
  */
 public class ClientController {
-    private final IMappingParser mappingParser;
+    private final IModParser mappingParser;
     private final IMods mods;
 
-    public ClientController(IMappingParser mappingParser, IMods mods) {
+    public ClientController(IModParser mappingParser, IMods mods) {
         this.mappingParser = mappingParser;
         this.mods = mods;
     }
 
-    public final IMappingParser getMappingParser() {
+    public final IModParser getMappingParser() {
         return mappingParser;
     }
 

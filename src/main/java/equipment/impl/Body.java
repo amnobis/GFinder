@@ -3,7 +3,8 @@ package equipment.impl;
 import equipment.api.IArmour;
 
 /**
- * Created by anobis on 2/20/16.
+ * 2/20/16
+ * @author {anobis}
  */
 public class Body extends Armour {
     private static final int MAX_SOCKETS = 6;

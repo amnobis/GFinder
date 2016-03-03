@@ -33,6 +33,9 @@ dependencies {
 jar {
     baseName = 'gf-gradle'
     version = '0.1.0'
+    manifest {
+        attributes 'Main-Class': 'client.impl.ClientApplication'
+    }
 }
 
 task wrapper(type: Wrapper) {

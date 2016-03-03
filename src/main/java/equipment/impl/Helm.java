@@ -1,7 +1,8 @@
 package equipment.impl;
 
 /**
- * Created by anobis on 2/20/16.
+ * 2/20/16
+ * @author {anobis}
  */
 public class Helm extends Armour {
     private static final int MAX_SOCKETS = 4;

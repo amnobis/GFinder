@@ -1,7 +1,7 @@
-package elasticsearch.impl;
+package mods.impl;
 
-import elasticsearch.api.IMappingParser;
-import elasticsearch.api.IMappingParserListener;
+import mods.api.IModParser;
+import mods.api.IModParserListener;
 import org.apache.log4j.Logger;
 
 import javax.inject.Inject;
@@ -9,21 +9,20 @@ import javax.inject.Singleton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  * @author anobis
  */
 @Singleton
-public class MappingParser implements IMappingParser {
-    private static final Logger LOG = Logger.getLogger(MappingParser.class);
+public class ModParser implements IModParser {
+    private static final Logger LOG = Logger.getLogger(ModParser.class);
     // Eventually the mapping will be a Key/Value pair in an ini file
-    private static final String mappingUrl = "http://exiletools.com/info/mapping?field=*";
-    private final Set<IMappingParserListener> listeners;
+    private static final String mappingUrl = "http://exiletools.com/endpoints/mapping";
+    private final IModParserListener listener;
 
     @Inject
-    public MappingParser(Set<IMappingParserListener> listeners) {
-        this.listeners = listeners;
+    public ModParser(IModParserListener listener) {
+        this.listener = listener;
     }
 
     @Override
@@ -41,16 +40,14 @@ public class MappingParser implements IMappingParser {
     private synchronized void parse(Scanner scanner) {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            for (IMappingParserListener listener : listeners) {
-                listener.notifyParsed(line);
-            }
+            listener.notifyParsed(line);
         }
     }
 
     @Override
     public String toString() {
-        return "MappingParser{" +
-                "listeners=" + listeners +
+        return "ModParser{" +
+                "listeners=" + listener +
                 '}';
     }
 }

@@ -1,7 +1,8 @@
 package client.impl;
 
 import com.gluonhq.ignite.guice.GuiceContext;
-import elasticsearch.api.IMappingParser;
+import mods.api.Category;
+import mods.api.IModParser;
 import elasticsearch.impl.PoeClient;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -13,12 +14,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import mods.api.IMods;
+import mods.impl.Mods;
+import ui.impl.SimplePane;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author anobis
@@ -26,9 +28,8 @@ import java.util.Set;
 
 public class Client extends Application {
     @Inject IMods mods;
-    @Inject IMappingParser mappingParser;
+    @Inject IModParser mappingParser;
     private GuiceContext context = new GuiceContext(this, () -> Arrays.asList(new GuiceModule()));
-
 
     public void init(String[] args) {
         launch(args);
@@ -36,88 +37,14 @@ public class Client extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Scene scene = new Scene(new Group(), 500, 250);
-        context.init();
-
-        final ComboBox<String> difficulty = new ComboBox<>();
-        final ComboBox<String> league = new ComboBox<>();
-        final TextField coldResist = new NumberTextField();
-        final TextField fireResist = new NumberTextField();
-        final TextField liteResist = new NumberTextField();
-        final TextField currency = new TextField();
-        final ComboBox<String> equipment = new ComboBox<>();
-        final ComboBox<String> modBox = new ComboBox<>();
-        final Button solve = new Button("Solve");
-
         PoeClient poeClient = new PoeClient();
+        SimplePane simplePane = new SimplePane();
+        Scene scene = new Scene(simplePane.create());
+        context.init();
         mappingParser.start();
-        System.out.println(mods.getExplicit());
 
-        List<String> equipmentList = new ArrayList<>(Arrays.asList("Body", "Boot", "Glove", "Helm", "Shield",
-                "Ring", "Ring", "Amulet", "Belt"));
-        List<String> difficultyList = new ArrayList<>(Arrays.asList("Normal", "Cruel", "Merciless"));
-        List<String> leagueList = new ArrayList<>(Arrays.asList("Hardcore", "Talisman", "Standard"));
-        List<String> implicit = new ArrayList<>();
-
-
-        equipment.getItems().addAll(equipmentList);
-        equipment.setMaxHeight(200);
-        equipment.setMaxWidth(150);
-        difficulty.getItems().addAll(difficultyList);
-        difficulty.setValue("Normal");
-        league.getItems().addAll(leagueList);
-        league.setValue("Standard");
-
-        BorderPane grid = new BorderPane();
-        GearPane gearPane = new GearPane();
-        grid.setPadding(new Insets(5, 5, 5, 5));
-        grid.setTop(solve);
-        grid.setBottom(modBox);
-        grid.setRight(equipment);
-
-
-        equipment.setOnAction(event -> {
-            try {
-                for (String key : mods.getExplicit().keySet()) {
-                    System.out.println(key);
-                    implicit.add(key);
-                }
-
-                modBox.getItems().addAll(implicit);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        solve.setOnAction(event -> {
-            try {
-                poeClient.startClient(league.getValue());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        Group rew = (Group) scene.getRoot();
-        rew.getChildren().add(grid);
-
-        primaryStage.setTitle("POE Resist Finder");
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    public class GearPane extends GridPane {
-
-        public GearPane() {
-            CheckBox body = new CheckBox("Body Armour");
-            CheckBox boots = new CheckBox("Boot");
-            CheckBox gloves = new CheckBox("Glove");
-            CheckBox helm = new CheckBox("Helm");
-
-            this.add(body, 1, 1);
-            this.add(boots, 1, 2);
-            this.add(gloves, 2, 1);
-            this.add(helm, 2, 2);
-        }
     }
 
     public class NumberTextField extends TextField
@@ -151,7 +78,7 @@ public class Client extends Application {
         this.mods = mods;
     }
 
-    public void setMappingParser(IMappingParser mappingParser) {
+    public void setMappingParser(IModParser mappingParser) {
         this.mappingParser = mappingParser;
     }
 }

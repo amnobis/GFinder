@@ -1,10 +1,10 @@
-package elasticsearch.api;
+package mods.api;
 
 /**
  * 2/28/16
  * @author {anobis}
  */
-public interface IMappingParser {
+public interface IModParser {
 
     /**
      * Initializes
