@@ -6,6 +6,7 @@ import mods.api.IModParserListener;
 import mods.api.IMods;
 import mods.impl.ModParser;
 import mods.impl.Mods;
+import ui.impl.SimplePane;
 
 /**
  * @author anobis

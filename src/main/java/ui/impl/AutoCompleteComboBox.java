@@ -43,6 +43,13 @@ public class AutoCompleteComboBox<T> {
                 return;
             }
 
+            if (event.getCode().equals(KeyCode.ENTER) || event.getCode().equals(KeyCode.ESCAPE)) {
+                comboBox.hide();
+                return;
+            }
+
+            comboBox.show();
+
             IndexRange ir = comboBox.getEditor().getSelection();
             sb.delete(0, sb.length());
             sb.append(comboBox.getEditor().getText());
@@ -53,7 +60,7 @@ public class AutoCompleteComboBox<T> {
 
             ObservableList<T> items = comboBox.getItems();
             for (int i=0; i<items.size(); i++) {
-                if (items.get(i) != null && comboBox.getEditor().getText() != null && items.get(i).toString().toLowerCase().startsWith(comboBox.getEditor().getText().toLowerCase())) {
+                if (items.get(i) != null && comboBox.getEditor().getText() != null && items.get(i).toString().toLowerCase().contains(comboBox.getEditor().getText().toLowerCase())) {
                     try {
                         comboBox.getEditor().setText(sb.toString() + items.get(i).toString().substring(sb.toString().length()));
                         comboBox.setValue(items.get(i));
@@ -71,6 +78,7 @@ public class AutoCompleteComboBox<T> {
         // add a focus listener such that if not in focus, reset the filtered typed keys
         this.comboBox.getEditor().focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
+                comboBox.hide();
                 lastLength = 0;
                 sb.delete(0, sb.length());
                 selectClosestResultBasedOnTextFieldValue(false, false);
@@ -78,7 +86,6 @@ public class AutoCompleteComboBox<T> {
         });
 
         this.comboBox.setOnMouseClicked(event -> selectClosestResultBasedOnTextFieldValue(true, true));
-        this.comboBox.setOnKeyPressed(event -> selectClosestResultBasedOnTextFieldValue(true, true));
     }
 
     /*

@@ -37,11 +37,12 @@ public class Client extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        PoeClient poeClient = new PoeClient();
-        SimplePane simplePane = new SimplePane();
-        Scene scene = new Scene(simplePane.create());
         context.init();
         mappingParser.start();
+
+        PoeClient poeClient = new PoeClient();
+        SimplePane simplePane = new SimplePane(mods);
+        Scene scene = new Scene(simplePane.create());
 
         primaryStage.setScene(scene);
         primaryStage.show();
